@@ -1,239 +1,232 @@
-BÁO CÁO ĐỒ ÁN 
-
-ỨNG DỤNG CÁC THUẬT TOÁN TÌM KIẾM TRONG BÀI TOÁN 8 Ô CHỮ 
-
-1. MỤC TIÊU 
-
-Mục tiêu chính của đồ án là nghiên cứu, phân tích sâu và triển khai ứng dụng các thuật toán tìm kiếm khác nhau nhằm giải quyết hiệu quả bài toán 8 ô chữ. Thông qua dự án này, chúng tôi chứng minh khả năng hiện thực hóa các thuật toán tìm kiếm có thông tin và không có thông tin, đồng thời tiến hành đánh giá định lượng hiệu suất của từng phương pháp khi áp dụng vào bối cảnh trò chơi. 
-
-2. NỘI DUNG NGHIÊN CỨU 
-
-2.1. Các Thuật Toán Tìm Kiếm Không Có Thông Tin (Uninformed Search Algorithms) 
-
-2.1.1. Phân tích Bài Toán Tìm Kiếm và Định nghĩa Solution 
-
-Bài toán 8 ô chữ, một bài toán kinh điển trong lĩnh vực Trí tuệ Nhân tạo, được cấu thành bởi các yếu tố cơ bản sau: 
-
-Trạng thái (State): Biểu diễn cấu hình hiện tại của trò chơi thông qua ma trận vuông 3x3. 
-
-Trạng thái Ban Đầu (Initial State): Cấu hình ma trận 3x3 xác định vị trí xuất phát của các ô số. 
-
-Trạng thái Mục Tiêu (Goal State): Cấu hình ma trận 3x3 mong muốn đạt được. 
-
-Hành động (Actions): Các thao tác di chuyển ô trống (giá trị 0) theo bốn hướng: lên, xuống, trái, phải. 
-
-Hàm Chuyển Trạng Thái (Transition Function): Quy tắc xác định trạng thái kế tiếp sau khi thực hiện một hành động hợp lệ. 
-
-Kiểm tra Mục Tiêu (Goal Test): Hàm boolean đánh giá xem trạng thái hiện tại có trùng với trạng thái mục tiêu hay không. 
-
-Chi phí Đường đi (Path Cost): Số lượng hành động (di chuyển) đã thực hiện để đạt đến trạng thái hiện tại từ trạng thái ban đầu. 
-
-Solution (Lời giải) cho bài toán 8 ô chữ được định nghĩa là một chuỗi tối ưu các hành động (di chuyển) từ trạng thái ban đầu đến trạng thái mục tiêu, tối thiểu hóa chi phí đường đi. 
-
-2.1.2. Trực Quan Hóa Thuật Toán 
-
-Ứng dụng đồ họa được phát triển cho phép trực quan hóa quá trình tìm kiếm của các thuật toán không có thông tin, bao gồm: 
-
-Tìm kiếm theo chiều sâu (Depth-First Search - DFS) 
-
- ![alt text](UFS.gif)
-
-Tìm kiếm theo chiều rộng (Breadth-First Search - BFS) 
-![alt text](BFS.gif)
-Tìm kiếm chi phí đồng nhất (Uniform-Cost Search - UCS) 
-![alt text](UCS.gif)
-Tìm kiếm sâu dần (Iterative Deepening Depth-First Search - IDDFS) 
-![alt text](IDDFS.gif)
-2.1.3. So sánh Hiệu Suất 
-
-[Tham khảo hình ảnh so sánh hiệu suất được đính kèm] 
-
-Hiệu suất của các thuật toán được đánh giá dựa trên các tiêu chí định lượng như thời gian thực thi (execution time) và số lượng trạng thái đã khám phá (number of expanded nodes) để đạt được trạng thái mục tiêu. 
-
-2.1.4. Nhận Xét về Hiệu Suất 
-
-DFS: Ưu điểm về bộ nhớ do chỉ duy trì nhánh tìm kiếm hiện tại. Tuy nhiên, có nguy cơ rơi vào vòng lặp vô hạn hoặc tìm thấy lời giải không tối ưu. Hiệu suất thực tế có thể kém trên không gian trạng thái lớn của bài toán 8 ô chữ. 
-
-BFS: Đảm bảo tìm được lời giải tối ưu (số bước di chuyển ít nhất). Nhược điểm là tiêu tốn nhiều bộ nhớ để lưu trữ các nút ở cùng mức độ sâu. Hiệu suất phù hợp với bài toán 8 ô chữ có độ phức tạp vừa phải. 
-
-UCS: Tương tự BFS, đảm bảo tìm được lời giải tối ưu khi chi phí các hành động khác nhau. Trong bài toán 8 ô chữ với chi phí mỗi bước đi là 1, hiệu suất tương đương BFS. 
-
-IDDFS: Kết hợp ưu điểm tiết kiệm bộ nhớ của DFS và tính tối ưu của BFS. Tốn thời gian hơn do phải lặp lại việc tìm kiếm ở các độ sâu khác nhau. 
-
-2.2. Các Thuật Toán Tìm Kiếm Có Thông Tin (Informed Search Algorithms) 
-
-Các thuật toán này tận dụng thông tin heuristic để hướng dẫn quá trình tìm kiếm, nâng cao hiệu quả so với các thuật toán không có thông tin. 
-
-Greedy Best-First Search (Tìm kiếm tham lam theo ưu tiên tốt nhất): 
-
-Hàm đánh giá (Evaluation function): f(n)=h(n), trong đó h(n) là hàm heuristic ước tính chi phí từ trạng thái n đến trạng thái mục tiêu. 
-
-Hàm Heuristic (Heuristic function): Sử dụng hàm Manhattan distance (tổng khoảng cách Manhattan từ vị trí hiện tại đến vị trí đích của mỗi ô). 
-
-Nguyên tắc hoạt động: Luôn chọn trạng thái có giá trị heuristic thấp nhất để mở rộng tiếp theo. 
-
-Ưu/nhược điểm: Nhanh chóng tìm ra lời giải nhưng không đảm bảo tính tối ưu. Dễ bị lạc vào các đường đi không hứa hẹn. 
-
-A* Search (Tìm kiếm A*): 
-
-Hàm đánh giá (Evaluation function): f(n)=g(n)+h(n), trong đó g(n) là chi phí đường đi từ trạng thái ban đầu đến trạng thái n, và h(n) là hàm heuristic ước tính chi phí từ trạng thái n đến trạng thái mục tiêu. 
-
-Hàm Heuristic (Heuristic function): Sử dụng hàm Manhattan distance (tổng khoảng cách Manhattan từ vị trí hiện tại đến vị trí đích của mỗi ô). 
-
-Nguyên tắc hoạt động: Ưu tiên mở rộng các trạng thái có tổng chi phí ước tính thấp nhất. 
-
-Ưu/nhược điểm: Đảm bảo tìm được lời giải tối ưu nếu hàm heuristic là chấp nhận được (admissible) và nhất quán (consistent). Có thể tốn nhiều bộ nhớ hơn các thuật toán khác. 
-
-IDA* Search (Tìm kiếm IDA*): 
-
-Hàm đánh giá (Evaluation function): Tương tự A*, sử dụng f(n)=g(n)+h(n). 
-
-Hàm Heuristic (Heuristic function): Sử dụng hàm Manhattan distance (tổng khoảng cách Manhattan từ vị trí hiện tại đến vị trí đích của mỗi ô). 
-
-Nguyên tắc hoạt động: Thực hiện tìm kiếm sâu dần (Iterative Deepening) với ngưỡng cắt dựa trên giá trị f(n). Bắt đầu với ngưỡng bằng h(initial), sau đó tăng dần ngưỡng lên giá trị f(n) nhỏ nhất vượt quá ngưỡng hiện tại của lần tìm kiếm trước. 
-
-Ưu/nhược điểm: Tiết kiệm bộ nhớ hơn A* vì không lưu trữ toàn bộ cây tìm kiếm. Vẫn đảm bảo tính tối ưu nếu heuristic chấp nhận được. Có thể tính toán lại các trạng thái nhiều lần. 
-
-2.3. Các Thuật Toán Tìm Kiếm Cục Bộ (Local Search Algorithms) 
-
-Tập trung vào việc tối ưu hóa trạng thái hiện tại để tìm ra trạng thái mục tiêu, không quan tâm đến đường đi. 
-
-Hill Climbing (Leo đồi): 
-
-Hàm đánh giá (Evaluation function): Thường là hàm heuristic h(n) (trong trường hợp tìm cực tiểu) hoặc hàm mục tiêu (trong trường hợp tìm cực đại). 
-
-Nguyên tắc hoạt động: Bắt đầu từ một trạng thái hiện tại và di chuyển đến trạng thái lân cận có giá trị hàm đánh giá tốt hơn. Lặp lại cho đến khi không tìm thấy trạng thái lân cận nào tốt hơn. 
-
-Các biến thể:  
-
-Simple Hill Climbing (Leo đồi đơn giản): Chọn trạng thái lân cận tốt hơn đầu tiên tìm thấy. 
-
-Steepest Ascent Hill Climbing (Leo đồi dốc nhất): Xem xét tất cả các trạng thái lân cận và chọn trạng thái tốt nhất. 
-
-Ưu/nhược điểm: Đơn giản và dễ cài đặt. Dễ bị mắc kẹt ở cực đại cục bộ (local maxima) hoặc cực tiểu cục bộ (local minima), vùng bằng phẳng (plateaus), hoặc gờ (ridges). 
-
-Random Restart Hill Climbing (Leo đồi khởi động lại ngẫu nhiên): 
-
-Nguyên tắc hoạt động: Thực hiện thuật toán Hill Climbing nhiều lần từ các trạng thái khởi tạo ngẫu nhiên khác nhau. Lưu giữ trạng thái tốt nhất tìm được sau tất cả các lần thử. 
-
-Ưu/nhược điểm: Tăng khả năng thoát khỏi cực đại/cực tiểu cục bộ so với Hill Climbing đơn thuần. Tuy nhiên, vẫn không đảm bảo tìm được nghiệm tối ưu toàn cục. 
-
-Beam Search (Tìm kiếm theo chùm tia): 
-
-Tham số: k (kích thước chùm tia). 
-
-Nguyên tắc hoạt động: Duy trì một tập hợp k trạng thái tốt nhất (chùm tia) tại mỗi bước. Mở rộng tất cả các trạng thái trong chùm tia và chọn k trạng thái tốt nhất để tiếp tục ở bước tiếp theo. 
-
-Ưu/nhược điểm: Cân bằng giữa tìm kiếm theo chiều rộng (như BFS) và tìm kiếm tham lam. Có thể tìm thấy lời giải tốt hơn Hill Climbing nhưng không đảm bảo tính tối ưu. 
-
-Simulated Annealing (Mô phỏng luyện kim): 
-
-Tham số: Nhiệt độ T (giảm dần theo thời gian), hàm giảm nhiệt độ. 
-
-Nguyên tắc hoạt động: Bắt đầu với một trạng thái hiện tại và nhiệt độ cao. Tại mỗi bước, chọn một trạng thái lân cận ngẫu nhiên. Nếu trạng thái lân cận tốt hơn, di chuyển đến đó. Nếu không tốt hơn, vẫn có một xác suất nhất định (phụ thuộc vào nhiệt độ và độ "tệ" của trạng thái lân cận) để di chuyển đến đó. Nhiệt độ giảm dần theo thời gian, làm giảm xác suất chấp nhận các di chuyển xấu hơn. 
-
-Ưu/nhược điểm: Có khả năng thoát khỏi cực đại/cực tiểu cục bộ tốt hơn Hill Climbing. Có thể hội tụ đến lời giải tốt nhưng có thể tốn nhiều thời gian. 
-
-Genetic Algorithm (Thuật toán di truyền): 
-
-Các thành phần chính:  
-
-Quần thể (Population): Một tập hợp các cá thể (trạng thái). 
-
-Hàm fitness (Fitness function): Đánh giá chất lượng của mỗi cá thể. 
-
-Chọn lọc (Selection): Chọn các cá thể tốt nhất để sinh sản. 
-
-Lai ghép (Crossover): Kết hợp thông tin từ hai cá thể cha mẹ để tạo ra cá thể con. 
-
-Đột biến (Mutation): Tạo ra sự thay đổi ngẫu nhiên trong cá thể con. 
-
-Nguyên tắc hoạt động: Bắt đầu với một quần thể ngẫu nhiên. Lặp lại các bước chọn lọc, lai ghép và đột biến để tạo ra các thế hệ mới với hy vọng tìm được các cá thể có fitness cao hơn. 
-
-Ưu/nhược điểm: Hiệu quả với các bài toán có không gian tìm kiếm lớn và phức tạp. Không đảm bảo tìm được nghiệm tối ưu toàn cục và có thể tốn nhiều thời gian tính toán. 
-
-2.4. Các Thuật Toán Tìm Kiếm Khác 
-
-And-Or Search (Tìm kiếm AND-OR): 
-
-Không gian trạng thái: Bao gồm các trạng thái và các nút AND (yêu cầu tất cả các nhánh con thành công) và nút OR (yêu cầu ít nhất một nhánh con thành công). 
-
-Mục tiêu: Tìm một cây giải pháp (solution tree) thay vì một đường đi đơn lẻ. 
-
-Ứng dụng: Phù hợp cho các bài toán có tính không xác định cao hoặc các bài toán lập kế hoạch. 
-
-Nguyên tắc hoạt động: Xây dựng cây tìm kiếm AND-OR để tìm chiến lược giải quyết. 
-
-CSP (Constraint Satisfaction Problems - Bài toán thỏa mãn ràng buộc): 
-
-Các thành phần chính:  
-
-Biến (Variables): Tập hợp các biến cần gán giá trị. 
-
-Miền giá trị (Domains): Tập hợp các giá trị có thể gán cho mỗi biến. 
-
-Ràng buộc (Constraints): Các quy tắc giới hạn giá trị mà các biến có thể nhận đồng thời. 
-
-Mục tiêu: Tìm một phép gán giá trị cho tất cả các biến sao cho tất cả các ràng buộc đều được thỏa mãn. 
-
-Các thuật toán tiêu biểu:  
-
-Backtracking (Tìm kiếm lùi): Tìm kiếm theo chiều sâu, gán giá trị cho các biến lần lượt. Nếu gặp phải mâu thuẫn (ràng buộc bị vi phạm), quay lui và thử giá trị khác. 
-
-Backtracking Forward Checking (Tìm kiếm lùi với kiểm tra phía trước): Cải tiến của Backtracking bằng cách kiểm tra trước các giá trị còn lại trong miền của các biến chưa được gán sau mỗi lần gán. Loại bỏ các giá trị không nhất quán với các ràng buộc. 
-
-Min Conflicts (Thuật toán xung đột tối thiểu): Bắt đầu với một phép gán không hoàn chỉnh (hoặc hoàn chỉnh nhưng vi phạm một số ràng buộc). Lặp lại việc chọn một biến vi phạm ràng buộc và gán cho nó một giá trị mới sao cho số lượng ràng buộc bị vi phạm là tối thiểu. 
-
-Sensorless Search (Tìm kiếm không cảm biến) / Conformant Search: 
-
-Không gian trạng thái: Không gian các tập hợp trạng thái có thể (belief states) do tác nhân không có thông tin đầy đủ về trạng thái hiện tại. 
-
-Mục tiêu: Tìm một chuỗi hành động đảm bảo đạt được mục tiêu bất kể trạng thái ban đầu thực tế là gì (trong tập hợp các trạng thái có thể). 
-
-Ứng dụng: Phù hợp cho các môi trường mà tác nhân không thể quan sát trực tiếp trạng thái. 
-
-Q-Learning: 
-
-Thuật toán: Một thuật toán học tăng cường (Reinforcement Learning) off-policy. 
-
-Bảng Q (Q-table): Lưu trữ giá trị Q(s, a) ước tính phần thưởng tích lũy kỳ vọng khi thực hiện hành động a trong trạng thái s. 
-
-Nguyên tắc hoạt động: Tác nhân tương tác với môi trường, thực hiện các hành động và nhận phần thưởng. Bảng Q được cập nhật dựa trên kinh nghiệm này để học chính sách tối ưu. 
-
-Ứng dụng: Phù hợp cho các môi trường có tính ngẫu nhiên và động, nơi tác nhân học hỏi thông qua thử và sai. 
-
-Nondeterministic Search (Tìm kiếm không xác định): 
-
-Đặc điểm: Các hành động có thể dẫn đến nhiều kết quả khác nhau. 
-
-Mục tiêu: Tìm một kế hoạch (plan) bao gồm các hành động và các nhánh dự phòng cho các kết quả có thể xảy ra. 
-
-Ứng dụng: Xử lý các tình huống có tính bất định. 
-
-Partially Observable Search (Tìm kiếm quan sát một phần): 
-
-Đặc điểm: Tác nhân không thể quan sát đầy đủ trạng thái của môi trường. 
-
-Không gian trạng thái: Tương tự Sensorless Search, làm việc với các trạng thái tin tưởng (belief states). 
-
-Mục tiêu: Tìm một chính sách (policy) ánh xạ các lịch sử quan sát đến các hành động. 
-
-3. KẾT LUẬN 
-
-Thông qua đồ án này, chúng tôi đã thực hiện nghiên cứu, triển khai và so sánh hiệu suất của một số thuật toán tìm kiếm tiêu biểu trong bối cảnh bài toán 8 ô chữ. Kết quả nghiên cứu cho thấy: 
-
-Các thuật toán tìm kiếm có thông tin (A*, IDA*) thường hiệu quả hơn các thuật toán không có thông tin (BFS, IDDFS, DFS) về tốc độ tìm kiếm và số lượng trạng thái duyệt qua. 
-
-Trong nhóm thuật toán không có thông tin, BFS và IDDFS đảm bảo tìm được lời giải tối ưu về số bước di chuyển, trong khi DFS có thể nhanh hơn nhưng không đảm bảo tính tối ưu. 
-
-Các thuật toán tìm kiếm cục bộ có khả năng khám phá không gian trạng thái rộng lớn nhưng không đảm bảo tìm được lời giải tối ưu toàn cục. 
-
-Thuật toán CSP phù hợp khi biểu diễn bài toán dưới dạng các ràng buộc, trong khi các thuật toán tìm kiếm trong môi trường không chắc chắn (Nondeterministic Search, Partially Observable Search) phù hợp cho các môi trường phức tạp hơn. 
-
-Các thuật toán học tăng cường như Q-Learning có tiềm năng trong các bài toán mà tác nhân cần học hỏi thông qua tương tác với môi trường. 
-
-Việc lựa chọn thuật toán phù hợp phụ thuộc vào yêu cầu cụ thể của bài toán, bao gồm yêu cầu về tính tối ưu, giới hạn về tài nguyên tính toán và đặc điểm của không gian trạng thái. 
-
-Đồ án này đã cung cấp cái nhìn sâu sắc về ứng dụng thực tế của các thuật toán tìm kiếm trong một bài toán cụ thể, đồng thời làm nổi bật tầm quan trọng của việc lựa chọn thuật toán phù hợp để đạt được hiệu quả giải quyết vấn đề tối ưu. 
-
- 
+BÁO CÁO ĐỒ ÁN: ỨNG DỤNG CÁC THUẬT TOÁN TÌM KIẾM TRONG BÀI TOÁN 8 Ô CHỮ
+1. MỤC TIÊU
+Mục tiêu chính của đồ án là nghiên cứu, phân tích sâu và triển khai ứng dụng các thuật toán tìm kiếm khác nhau nhằm giải quyết hiệu quả bài toán 8 ô chữ. Thông qua dự án này, chúng tôi chứng minh khả năng hiện thực hóa các thuật toán tìm kiếm có thông tin và không có thông tin, đồng thời tiến hành đánh giá định lượng hiệu suất của từng phương pháp khi áp dụng vào bối cảnh trò chơi.
+
+2. NỘI DUNG NGHIÊN CỨU
+2.1. Các Thuật Toán Tìm Kiếm Không Có Thông Tin (Uninformed Search Algorithms)
+2.1.1. Phân tích Bài Toán Tìm Kiếm và Định nghĩa Solution
+Bài toán 8 ô chữ, một bài toán kinh điển trong lĩnh vực Trí tuệ Nhân tạo, được cấu thành bởi các yếu tố cơ bản sau:
+
+Trạng thái (State): Biểu diễn cấu hình hiện tại của trò chơi thông qua ma trận vuông 3x3.
+Trạng thái Ban Đầu (Initial State): Cấu hình ma trận 3x3 xác định vị trí xuất phát của các ô số.
+Trạng thái Mục Tiêu (Goal State): Cấu hình ma trận 3x3 mong muốn đạt được.
+Hành động (Actions): Các thao tác di chuyển ô trống (giá trị 0) theo bốn hướng: lên, xuống, trái, phải.
+Hàm Chuyển Trạng Thái (Transition Function): Quy tắc xác định trạng thái kế tiếp sau khi thực hiện một hành động hợp lệ.
+Kiểm tra Mục Tiêu (Goal Test): Hàm boolean đánh giá xem trạng thái hiện tại có trùng với trạng thái mục tiêu hay không.
+Chi phí Đường đi (Path Cost): Số lượng hành động (di chuyển) đã thực hiện để đạt đến trạng thái hiện tại từ trạng thái ban đầu.
+Solution (Lời giải) cho bài toán 8 ô chữ được định nghĩa là một chuỗi tối ưu các hành động (di chuyển) từ trạng thái ban đầu đến trạng thái mục tiêu, tối thiểu hóa chi phí đường đi.
+
+2.1.2. Trực Quan Hóa Thuật Toán
+Ứng dụng đồ họa được phát triển cho phép trực quan hóa quá trình tìm kiếm của các thuật toán không có thông tin, bao gồm:
+
+Tìm kiếm theo chiều sâu (Depth-First Search - DFS)
+Nguyên tắc hoạt động: DFS tìm kiếm theo cách đi sâu vào cây tìm kiếm, mở rộng từng nhánh con cho đến khi không thể tiếp tục, rồi quay lại và mở rộng các nhánh khác. Quá trình này tiếp diễn cho đến khi tìm thấy trạng thái mục tiêu hoặc không còngi nhánh để mở rộng. Hàm đánh giá: Không có hàm heuristic, chỉ dựa vào việc mở rộng các trạng thái theo chiều sâu. Ưu điểm: Tiết kiệm bộ nhớ vì chỉ cần lưu trữ các trạng thái dọc theo con đường tìm kiếm hiện tại. Nhược điểm: Không đảm bảo sẽ tìm thấy lời giải tối ưu và có thể bị rơi vào vòng lặp vô hạn nếu không xử lý đúng.
+
+DFS
+
+Tìm kiếm theo chiều rộng (Breadth-First Search - BFS)
+Nguyên tắc hoạt động: BFS tìm kiếm theo cách mở rộng tất cả các trạng thái ở cùng một mức độ trước khi chuyển sang mức độ sâu hơn. Quá trình này tiếp tục cho đến khi tìm thấy trạng thái mục tiêu. Hàm đánh giá: Không có hàm heuristic, tất cả các trạng thái được mở rộng theo thứ tự chiều rộng. Ưu điểm: Đảm bảo tìm thấy lời giải tối ưu nếu có. Nhược điểm: Tốn nhiều bộ nhớ vì phải lưu trữ tất cả các trạng thái ở cùng một mức độ.
+
+BFS
+
+Tìm kiếm chi phí đồng nhất (Uniform-Cost Search - UCS)
+Nguyên tắc hoạt động: UCS tìm kiếm theo chi phí nhỏ nhất, tức là mở rộng các trạng thái có chi phí thấp nhất từ điểm bắt đầu đến trạng thái hiện tại. Quá trình này tiếp tục cho đến khi tìm thấy trạng thái mục tiêu. Hàm đánh giá: f(n) = g(n), trong đó g(n) là chi phí đường đi từ trạng thái ban đầu đến trạng thái n. Ưu điểm: Đảm bảo tìm được lời giải tối ưu. Nhược điểm: Tốn nhiều bộ nhớ và thời gian, vì phải tính toán và lưu trữ các chi phí của các trạng thái.
+
+![UCS](../gif/UCS.gif)
+Tìm kiếm sâu dần (Iterative Deepening Depth-First Search - IDDFS)
+Nguyên tắc hoạt động: IDDFS kết hợp giữa DFS và BFS, thực hiện tìm kiếm theo chiều sâu nhưng với mức độ tìm kiếm giới hạn. Mỗi lần tìm kiếm, mức độ giới hạn được tăng lên, giúp đảm bảo sẽ mở rộng tất cả các trạng thái theo thứ tự tăng dần chiều sâu cho đến khi tìm thấy mục tiêu. Hàm đánh giá: Không có hàm heuristic, chỉ dựa vào chiều sâu của trạng thái trong cây tìm kiếm. Ưu điểm: Tiết kiệm bộ nhớ hơn BFS, và vẫn đảm bảo tìm được lời giải tối ưu. Nhược điểm: Có thể phải tính toán lại các trạng thái đã mở rộng nhiều lần.
+
+IDDFS
+
+2.1.3. So sánh Hiệu Suất
+Hiệu suất của các thuật toán được đánh giá dựa trên các tiêu chí định lượng như thời gian thực thi (execution time) và số lượng trạng thái đã khám phá (number of expanded nodes) để đạt được trạng thái mục tiêu. Sosanh
+
+2.1.4. Nhận Xét về Hiệu Suất
+DFS: Ưu điểm về bộ nhớ do chỉ duy trì nhánh tìm kiếm hiện tại. Tuy nhiên, có nguy cơ rơi vào vòng lặp vô hạn hoặc tìm thấy lời giải không tối ưu. Hiệu suất thực tế có thể kém trên không gian trạng thái lớn của bài toán 8 ô chữ.
+BFS: Đảm bảo tìm được lời giải tối ưu (số bước di chuyển ít nhất). Nhược điểm là tiêu tốn nhiều bộ nhớ để lưu trữ các nút ở cùng mức độ sâu. Hiệu suất phù hợp với bài toán 8 ô chữ có độ phức tạp vừa phải.
+UCS: Tương tự BFS, đảm bảo tìm được lời giải tối ưu khi chi phí các hành động khác nhau. Trong bài toán 8 ô chữ với chi phí mỗi bước đi là 1, hiệu suất tương đương BFS.
+IDDFS: Kết hợp ưu điểm tiết kiệm bộ nhớ của DFS và tính tối ưu của BFS. Tốn thời gian hơn do phải lặp lại việc tìm kiếm ở các độ sâu khác nhau.
+2.2. Các Thuật Toán Tìm Kiếm Có Thông Tin (Informed Search Algorithms)
+Các thuật toán này tận dụng thông tin heuristic để hướng dẫn quá trình tìm kiếm, nâng cao hiệu quả so với các thuật toán không có thông tin.
+
+Greedy Best-First Search (Tìm kiếm tham lam theo ưu tiên tốt nhất):
+Greedy
+
+Hàm đánh giá (Evaluation function): f(n)=h(n), trong đó h(n) là hàm heuristic ước tính chi phí từ trạng thái n đến trạng thái mục tiêu.
+Nguyên tắc hoạt động: Luôn chọn trạng thái có giá trị heuristic thấp nhất để mở rộng tiếp theo.
+Ưu/nhược điểm: Nhanh chóng tìm ra lời giải nhưng không đảm bảo tính tối ưu. Dễ bị lạc vào các đường đi không hứa hẹn.
+A* Search (Tìm kiếm A*):
+A*
+
+Hàm đánh giá (Evaluation function): f(n)=g(n)+h(n), trong đó g(n) là chi phí đường đi từ trạng thái ban đầu đến trạng thái n, và h(n) là hàm heuristic ước tính chi phí từ trạng thái n đến trạng thái mục tiêu.
+Nguyên tắc hoạt động: Ưu tiên mở rộng các trạng thái có tổng chi phí ước tính thấp nhất.
+Ưu/nhược điểm: Đảm bảo tìm được lời giải tối ưu nếu hàm heuristic là chấp nhận được (admissible) và nhất quán (consistent). Có thể tốn nhiều bộ nhớ hơn các thuật toán khác.
+IDA* Search (Tìm kiếm IDA*):
+IDA*
+
+Hàm đánh giá (Evaluation function): Tương tự A*, sử dụng f(n)=g(n)+h(n).
+Nguyên tắc hoạt động: Thực hiện tìm kiếm sâu dần (Iterative Deepening) với ngưỡng cắt dựa trên giá trị f(n). Bắt đầu với ngưỡng bằng h(initial), sau đó tăng dần ngưỡng lên giá trị f(n) nhỏ nhất vượt quá ngưỡng hiện tại của lần tìm kiếm trước.
+Ưu/nhược điểm: Tiết kiệm bộ nhớ hơn A* vì không lưu trữ toàn bộ cây tìm kiếm. Vẫn đảm bảo tính tối ưu nếu heuristic chấp nhận được. Có thể tính toán lại các trạng thái nhiều lần. Nhận xét:
+Greedy có thể giúp tìm ra giải pháp nhanh chóng nhưng không đảm bảo tính tối ưu
+A* lại cung cấp giải pháp tối ưu hơn với sự đánh giá toàn diện giữa chi phí đi qua các trạng thái và chi phí ước tính từ trạng thái hiện tại tới mục tiêu.
+IDA* là một sự lựa chọn lý tưởng khi bộ nhớ là một yếu tố hạn chế, mặc dù nó có thể tốn thời gian tính toán hơn So Sánh: sosanh
+2.3. Các Thuật Toán Tìm Kiếm Cục Bộ (Local Search Algorithms)
+Tập trung vào việc tối ưu hóa trạng thái hiện tại để tìm ra trạng thái mục tiêu, không quan tâm đến đường đi.
+
+Simple Hill Climbing (Leo đồi đơn giản)
+Hàm đánh giá: Sử dụng hàm heuristic h(n) để đánh giá trạng thái.
+
+Nguyên tắc hoạt động:
+
+Bắt đầu từ một trạng thái hiện tại.
+Chọn ngẫu nhiên một trạng thái lân cận.
+Nếu trạng thái đó tốt hơn → di chuyển đến đó.
+Nếu không tốt hơn → giữ nguyên trạng thái hiện tại.
+Lặp lại cho đến khi không còn trạng thái nào tốt hơn.
+Ưu điểm:
+
+Đơn giản, dễ cài đặt.
+Nhược điểm:
+
+Dễ bị kẹt tại cực trị địa phương.
+Có thể bỏ qua các trạng thái tốt hơn nếu không chọn trúng.
+Steepest-Ascent Hill Climbing (Leo đồi theo hướng dốc nhất)
+Hàm đánh giá: Heuristic h(n).
+
+Nguyên tắc hoạt động:
+
+Bắt đầu từ một trạng thái hiện tại.
+Tạo tất cả các trạng thái lân cận.
+Chọn trạng thái tốt nhất trong các lân cận.
+Nếu tốt hơn → di chuyển đến đó.
+Nếu không có trạng thái nào tốt hơn → dừng lại (kẹt ở local optimum).
+Ưu điểm:
+
+Tốt hơn Simple Hill Climbing vì luôn chọn hướng tối ưu nhất tại mỗi bước.
+Nhược điểm:
+
+Cũng dễ bị kẹt ở local optimum, plateau hoặc ridge.
+Tốn nhiều tài nguyên hơn vì phải đánh giá tất cả các lân cận.
+Random-Restart Hill Climbing (Leo đồi khởi động lại ngẫu nhiên)
+Ý tưởng chính:
+Nếu một lần leo đồi bị kẹt tại cực trị địa phương, hãy bắt đầu lại từ một trạng thái ngẫu nhiên mới và tiếp tục leo.
+
+Nguyên tắc hoạt động:
+
+Thực hiện Simple hoặc Steepest-Ascent Hill Climbing.
+Nếu bị kẹt tại cực trị địa phương → khởi động lại từ trạng thái ngẫu nhiên.
+Lặp lại quá trình này cho đến khi tìm thấy lời giải đủ tốt hoặc đạt giới hạn số lần thử.
+Ưu điểm:
+
+Có khả năng thoát khỏi local optima.
+Tăng xác suất tìm được lời giải tối ưu toàn cục.
+Nhược điểm:
+
+Cần thêm tài nguyên tính toán cho nhiều lần thử.
+Không chắc chắn tìm ra lời giải tối ưu nếu số lần thử giới hạn.
+Simulated Annealing (Mô phỏng luyện kim):
+Tham số: Nhiệt độ T (giảm dần theo thời gian), hàm giảm nhiệt độ.
+Nguyên tắc hoạt động: Bắt đầu với một trạng thái hiện tại và nhiệt độ cao. Tại mỗi bước, chọn một trạng thái lân cận ngẫu nhiên. Nếu trạng thái lân cận tốt hơn, di chuyển đến đó. Nếu không tốt hơn, vẫn có một xác suất nhất định (phụ thuộc vào nhiệt độ và độ "tệ" của trạng thái lân cận) để di chuyển đến đó. Nhiệt độ giảm dần theo thời gian, làm giảm xác suất chấp nhận các di chuyển xấu hơn.
+Genetic Algorithm (Thuật toán di truyền):
+Các thành phần chính:
+Quần thể (Population): Một tập hợp các cá thể (trạng thái).
+Hàm fitness (Fitness function): Đánh giá chất lượng của mỗi cá thể.
+Chọn lọc (Selection): Chọn các cá thể tốt nhất để sinh sản.
+Lai ghép (Crossover): Kết hợp thông tin từ hai cá thể cha mẹ để tạo ra cá thể con.
+Đột biến (Mutation): Tạo ra sự thay đổi ngẫu nhiên trong cá thể con.
+Beam Search (Tìm kiếm theo tia)
+alt text
+
+Tham số then chốt:
+
+Độ rộng tia k.
+Nguyên tắc hoạt động:
+
+Bắt đầu với k trạng thái đầy tiềm năng.
+Ở mỗi bước:
+Từ mỗi trạng thái hiện tại, tạo ra tất cả các trạng thái lân cận.
+Tổng hợp tất cả các trạng thái lân cận từ k trạng thái trước.
+Sử dụng hàm heuristic để đánh giá và chỉ giữ lại k trạng thái tốt nhất.
+Lặp lại quá trình này cho đến khi:
+Tìm thấy trạng thái mục tiêu, hoặc
+Không còn trạng thái mới, hoặc
+Đạt đến giới hạn định trước (số bước, thời gian...).
+Đặc điểm:
+
+Kết hợp giữa BFS và chiến lược heuristic.
+Giảm chi phí bộ nhớ so với BFS.
+Có thể bỏ qua lời giải nếu k quá nhỏ.
+Nhận xét:
+
+Các thuật toán Hill Climbing đơn giản nhanh nhưng dễ bị kẹt tại cực trị địa phương, không đảm bảo tìm lời giải tối ưu trong 8-puzzle.
+Simulated Annealing cải thiện khả năng thoát khỏi cực trị địa phương, phù hợp với bài toán 8-puzzle phức tạp.
+Beam Search giúp cân bằng giữa bộ nhớ và thời gian, hiệu quả nếu chọn beam width phù hợp.
+Genetic Algorithm có thể tìm lời giải tốt trong không gian trạng thái lớn nhưng cần nhiều tính toán và tinh chỉnh tham số.
+Tóm lại, Tìm kiếm cục bộ và tiến hóa cung cấp các phương pháp linh hoạt, có thể áp dụng trong 8-puzzle để tìm lời giải gần tối ưu nhanh hơn so với tìm kiếm toàn diện, nhưng không đảm bảo tối ưu tuyệt đối. So sánh: sosanh
+2.4. Các Thuật Toán Tìm Kiếm Khác
+And-Or Search (Tìm kiếm AND-OR)
+And-Or
+
+Mục tiêu: Tìm một cây giải pháp (solution tree) thay vì một đường đi duy nhất.
+Áp dụng: Trong môi trường không xác định (nondeterministic), nơi mỗi hành động có thể dẫn đến nhiều kết quả khác nhau.
+Nguyên tắc hoạt động:
+Tại mỗi nút OR: chọn một hành động.
+Tại mỗi nút AND: tất cả các kết quả có thể của hành động phải dẫn đến thành công.
+Kết quả: Một kế hoạch có điều kiện (conditional plan) có thể xử lý mọi tình huống xảy ra.
+Q-Learning (Học tăng cường Q)
+Loại: Thuật toán Reinforcement Learning (Học tăng cường) off-policy.
+Mục tiêu: Tìm chính sách tối ưu (optimal policy) để đưa ra hành động trong từng trạng thái.
+Nguyên tắc hoạt động:
+Học bảng Q-Value Q(s, a) ước lượng giá trị kỳ vọng khi thực hiện hành động a tại trạng thái s.
+Cập nhật Q-Value theo công thức:
+Q(s, a) ← Q(s, a) + α [r + γ * max Q(s', a') - Q(s, a)]
+α: learning rate
+γ: discount factor
+r: phần thưởng thu được
+s': trạng thái kế tiếp
+Ưu điểm: Không cần mô hình môi trường (model-free).
+Nondeterministic Search (Tìm kiếm không xác định)
+NondeterminnisticSearch
+
+Môi trường: Không xác định — một hành động có thể có nhiều kết quả.
+Mục tiêu: Tìm một kế hoạch với các nhánh dự phòng, bao gồm:
+Các hành động chính.
+Các rẽ nhánh để xử lý mọi kết quả có thể xảy ra.
+Giải pháp: Cây AND-OR hoặc kế hoạch có điều kiện.
+Partially Observable Search (Tìm kiếm trong môi trường quan sát một phần)
+Partially_Observable_Search
+
+Đặc điểm:
+Không thể quan sát toàn bộ trạng thái thật.
+Làm việc với trạng thái tin tưởng (belief states) – tập các trạng thái khả dĩ.
+Mục tiêu: Tìm kế hoạch hoạt động hiệu quả dù không biết chắc mình đang ở đâu.
+Giải pháp điển hình: Tìm kiếm Sensorless, lọc trạng thái, cập nhật trạng thái tin tưởng sau mỗi hành động.
+Backtracking
+Backtracking Thuật toán Backtracking duyệt qua không gian trạng thái một cách đệ quy, tìm kiếm lời giải bằng cách thử từng trạng thái và quay lại nếu không tìm được lời giải. Nếu tìm thấy trạng thái đích, thuật toán sẽ trả về đường đi.
+
+Cách hoạt động:
+Tạo một danh sách path để lưu các trạng thái đã duyệt.
+Sử dụng một tập hợp visited để theo dõi các trạng thái đã thăm.
+Đệ quy duyệt qua các trạng thái láng giềng của trạng thái hiện tại.
+Nếu trạng thái hiện tại là trạng thái đích, trả về đường đi.
+Backtracking với Forward Checking
+BacktrackingForward Phiên bản này sử dụng Forward Checking để chỉ duyệt qua các láng giềng hợp lệ, giúp giảm thiểu việc duyệt qua các trạng thái đã thăm, từ đó cải thiện hiệu suất.
+
+Cách hoạt động:
+Kiểm tra các láng giềng hợp lệ trước khi tiếp tục.
+Tương tự như Backtracking, nếu trạng thái đích được tìm thấy, thuật toán sẽ trả về đường đi.
+Min-Conflicts
+Thuật toán Min-Conflicts là một phương pháp heuristic, nơi thuật toán tìm kiếm trạng thái có ít xung đột nhất với các láng giềng của nó và tiếp tục đi theo hướng này.
+
+Cách hoạt động:
+Đếm xung đột của trạng thái với các láng giềng.
+Chọn láng giềng có số lượng xung đột ít nhất.
+Dừng lại nếu không có thay đổi trạng thái hoặc đạt đến giới hạn bước đi.
+3. KẾT LUẬN
+Thông qua đồ án này, chúng tôi đã thực hiện nghiên cứu, triển khai và so sánh hiệu suất của một số thuật toán tìm kiếm tiêu biểu trong bối cảnh bài toán 8 ô chữ. Kết quả nghiên cứu cho thấy:
+
+Các thuật toán tìm kiếm có thông tin (A*, IDA*) thường hiệu quả hơn các thuật toán không có thông tin (BFS, IDDFS, DFS) về tốc độ tìm kiếm và số lượng trạng thái duyệt qua.
+Các thuật toán tìm kiếm cục bộ có khả năng khám phá không gian trạng thái rộng lớn nhưng không đảm bảo tìm được lời giải tối ưu toàn cục.
+Thuật toán CSP phù hợp khi biểu diễn bài toán dưới dạng các ràng buộc, trong khi các thuật toán tìm kiếm trong môi trường không chắc chắn (Nondeterministic Search, Partially Observable Search) phù hợp cho các môi trường phức tạp hơn.
+Các thuật toán học tăng cường như Q-Learning có tiềm năng trong các bài toán mà tác nhân cần học hỏi thông qua tương tác với môi trường.
+Việc lựa chọn thuật toán phù hợp phụ thuộc vào yêu cầu cụ thể của bài toán, bao gồm yêu cầu về tính tối ưu, giới hạn về tài nguyên tính toán và đặc điểm của không gian trạng thái.
