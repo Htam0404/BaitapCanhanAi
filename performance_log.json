@@ -1,0 +1,44 @@
+[
+    {
+        "Algorithm": "And-Or Search",
+        "Elapsed Time (s)": 1.453873,
+        "RAM Used (MB)": 43.07,
+        "ROM Used (GB)": 70.01
+    },
+    {
+        "Algorithm": "Nondeterministic Search",
+        "Elapsed Time (s)": 2.992818,
+        "RAM Used (MB)": 157.93,
+        "ROM Used (GB)": 70.01
+    },
+    {
+        "Algorithm": "Partially Observable Search",
+        "Elapsed Time (s)": 3.48089,
+        "RAM Used (MB)": 158.05,
+        "ROM Used (GB)": 70.01
+    },
+    {
+        "Algorithm": "Backtracking",
+        "Elapsed Time (s)": 0.987587,
+        "RAM Used (MB)": 160.07,
+        "ROM Used (GB)": 70.01
+    },
+    {
+        "Algorithm": "Backtracking Forward",
+        "Elapsed Time (s)": 0.907141,
+        "RAM Used (MB)": 164.69,
+        "ROM Used (GB)": 70.01
+    },
+    {
+        "Algorithm": "Min Conflicts",
+        "Elapsed Time (s)": 0.067776,
+        "RAM Used (MB)": 158.68,
+        "ROM Used (GB)": 70.01
+    },
+    {
+        "Algorithm": "Min Conflicts",
+        "Elapsed Time (s)": 0.007319,
+        "RAM Used (MB)": 158.68,
+        "ROM Used (GB)": 70.01
+    }
+]
