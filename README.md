@@ -20,25 +20,41 @@ Solution (Lời giải) cho bài toán 8 ô chữ được định nghĩa là m�
 Ứng dụng đồ họa được phát triển cho phép trực quan hóa quá trình tìm kiếm của các thuật toán không có thông tin, bao gồm:
 
 Tìm kiếm theo chiều sâu (Depth-First Search - DFS)
-Nguyên tắc hoạt động: DFS tìm kiếm theo cách đi sâu vào cây tìm kiếm, mở rộng từng nhánh con cho đến khi không thể tiếp tục, rồi quay lại và mở rộng các nhánh khác. Quá trình này tiếp diễn cho đến khi tìm thấy trạng thái mục tiêu hoặc không còngi nhánh để mở rộng. Hàm đánh giá: Không có hàm heuristic, chỉ dựa vào việc mở rộng các trạng thái theo chiều sâu. Ưu điểm: Tiết kiệm bộ nhớ vì chỉ cần lưu trữ các trạng thái dọc theo con đường tìm kiếm hiện tại. Nhược điểm: Không đảm bảo sẽ tìm thấy lời giải tối ưu và có thể bị rơi vào vòng lặp vô hạn nếu không xử lý đúng.
+Nguyên tắc hoạt động: DFS tìm kiếm theo cách đi sâu vào cây tìm kiếm, mở rộng từng nhánh con cho đến khi không thể tiếp tục, rồi quay lại và mở rộng các nhánh khác. 
+Quá trình này tiếp diễn cho đến khi tìm thấy trạng thái mục tiêu hoặc không còngi nhánh để mở rộng.
+Hàm đánh giá: Không có hàm heuristic, chỉ dựa vào việc mở rộng các trạng thái theo chiều sâu.
+Ưu điểm: Tiết kiệm bộ nhớ vì chỉ cần lưu trữ các trạng thái dọc theo con đường tìm kiếm hiện tại. 
+Nhược điểm: Không đảm bảo sẽ tìm thấy lời giải tối ưu và có thể bị rơi vào vòng lặp vô hạn nếu không xử lý đúng.
 
 ![DFS](https://github.com/user-attachments/assets/d151f02b-e175-4917-9bcd-e2dc731fcaa5)
 
 
 Tìm kiếm theo chiều rộng (Breadth-First Search - BFS)
-Nguyên tắc hoạt động: BFS tìm kiếm theo cách mở rộng tất cả các trạng thái ở cùng một mức độ trước khi chuyển sang mức độ sâu hơn. Quá trình này tiếp tục cho đến khi tìm thấy trạng thái mục tiêu. Hàm đánh giá: Không có hàm heuristic, tất cả các trạng thái được mở rộng theo thứ tự chiều rộng. Ưu điểm: Đảm bảo tìm thấy lời giải tối ưu nếu có. Nhược điểm: Tốn nhiều bộ nhớ vì phải lưu trữ tất cả các trạng thái ở cùng một mức độ.
+Nguyên tắc hoạt động: BFS tìm kiếm theo cách mở rộng tất cả các trạng thái ở cùng một mức độ trước khi chuyển sang mức độ sâu hơn. 
+Quá trình này tiếp tục cho đến khi tìm thấy trạng thái mục tiêu. 
+Hàm đánh giá: Không có hàm heuristic, tất cả các trạng thái được mở rộng theo thứ tự chiều rộng.
+Ưu điểm: Đảm bảo tìm thấy lời giải tối ưu nếu có.
+Nhược điểm: Tốn nhiều bộ nhớ vì phải lưu trữ tất cả các trạng thái ở cùng một mức độ.
 
 ![BFS](https://github.com/user-attachments/assets/9f2c63bd-53b2-406a-83a7-622c03155f84)
 
 
 Tìm kiếm chi phí đồng nhất (Uniform-Cost Search - UCS)
-Nguyên tắc hoạt động: UCS tìm kiếm theo chi phí nhỏ nhất, tức là mở rộng các trạng thái có chi phí thấp nhất từ điểm bắt đầu đến trạng thái hiện tại. Quá trình này tiếp tục cho đến khi tìm thấy trạng thái mục tiêu. Hàm đánh giá: f(n) = g(n), trong đó g(n) là chi phí đường đi từ trạng thái ban đầu đến trạng thái n. Ưu điểm: Đảm bảo tìm được lời giải tối ưu. Nhược điểm: Tốn nhiều bộ nhớ và thời gian, vì phải tính toán và lưu trữ các chi phí của các trạng thái.
+Nguyên tắc hoạt động: UCS tìm kiếm theo chi phí nhỏ nhất, tức là mở rộng các trạng thái có chi phí thấp nhất từ điểm bắt đầu đến trạng thái hiện tại.
+Quá trình này tiếp tục cho đến khi tìm thấy trạng thái mục tiêu.
+Hàm đánh giá: f(n) = g(n), trong đó g(n) là chi phí đường đi từ trạng thái ban đầu đến trạng thái n. 
+Ưu điểm: Đảm bảo tìm được lời giải tối ưu.
+Nhược điểm: Tốn nhiều bộ nhớ và thời gian, vì phải tính toán và lưu trữ các chi phí của các trạng thái.
 
 ![UCS](https://github.com/user-attachments/assets/d28ec998-1b7d-449b-b9f7-3a69e91d50e5)
 
 
 Tìm kiếm sâu dần (Iterative Deepening Depth-First Search - IDDFS)
-Nguyên tắc hoạt động: IDDFS kết hợp giữa DFS và BFS, thực hiện tìm kiếm theo chiều sâu nhưng với mức độ tìm kiếm giới hạn. Mỗi lần tìm kiếm, mức độ giới hạn được tăng lên, giúp đảm bảo sẽ mở rộng tất cả các trạng thái theo thứ tự tăng dần chiều sâu cho đến khi tìm thấy mục tiêu. Hàm đánh giá: Không có hàm heuristic, chỉ dựa vào chiều sâu của trạng thái trong cây tìm kiếm. Ưu điểm: Tiết kiệm bộ nhớ hơn BFS, và vẫn đảm bảo tìm được lời giải tối ưu. Nhược điểm: Có thể phải tính toán lại các trạng thái đã mở rộng nhiều lần.
+Nguyên tắc hoạt động: IDDFS kết hợp giữa DFS và BFS, thực hiện tìm kiếm theo chiều sâu nhưng với mức độ tìm kiếm giới hạn.
+Mỗi lần tìm kiếm, mức độ giới hạn được tăng lên, giúp đảm bảo sẽ mở rộng tất cả các trạng thái theo thứ tự tăng dần chiều sâu cho đến khi tìm thấy mục tiêu.
+Hàm đánh giá: Không có hàm heuristic, chỉ dựa vào chiều sâu của trạng thái trong cây tìm kiếm. 
+Ưu điểm: Tiết kiệm bộ nhớ hơn BFS, và vẫn đảm bảo tìm được lời giải tối ưu.
+Nhược điểm: Có thể phải tính toán lại các trạng thái đã mở rộng nhiều lần.
 
 ![IDDFS](https://github.com/user-attachments/assets/645b3cc2-3a11-4c7d-bc81-3c6e30763e52)
 
