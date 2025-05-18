@@ -1,44 +1,38 @@
 [
     {
         "Algorithm": "And-Or Search",
-        "Elapsed Time (s)": 1.453873,
-        "RAM Used (MB)": 43.07,
-        "ROM Used (GB)": 70.01
+        "Elapsed Time (s)": 1.05504,
+        "RAM Used (MB)": 41.84,
+        "ROM Used (GB)": 69.61
     },
     {
         "Algorithm": "Nondeterministic Search",
-        "Elapsed Time (s)": 2.992818,
-        "RAM Used (MB)": 157.93,
-        "ROM Used (GB)": 70.01
+        "Elapsed Time (s)": 2.140076,
+        "RAM Used (MB)": 157.16,
+        "ROM Used (GB)": 69.61
     },
     {
         "Algorithm": "Partially Observable Search",
-        "Elapsed Time (s)": 3.48089,
-        "RAM Used (MB)": 158.05,
-        "ROM Used (GB)": 70.01
+        "Elapsed Time (s)": 2.127227,
+        "RAM Used (MB)": 157.35,
+        "ROM Used (GB)": 69.61
     },
     {
         "Algorithm": "Backtracking",
-        "Elapsed Time (s)": 0.987587,
-        "RAM Used (MB)": 160.07,
-        "ROM Used (GB)": 70.01
+        "Elapsed Time (s)": 0.610696,
+        "RAM Used (MB)": 159.97,
+        "ROM Used (GB)": 69.61
     },
     {
         "Algorithm": "Backtracking Forward",
-        "Elapsed Time (s)": 0.907141,
-        "RAM Used (MB)": 164.69,
-        "ROM Used (GB)": 70.01
+        "Elapsed Time (s)": 0.882138,
+        "RAM Used (MB)": 163.98,
+        "ROM Used (GB)": 69.61
     },
     {
         "Algorithm": "Min Conflicts",
-        "Elapsed Time (s)": 0.067776,
-        "RAM Used (MB)": 158.68,
-        "ROM Used (GB)": 70.01
-    },
-    {
-        "Algorithm": "Min Conflicts",
-        "Elapsed Time (s)": 0.007319,
-        "RAM Used (MB)": 158.68,
-        "ROM Used (GB)": 70.01
+        "Elapsed Time (s)": 0.026623,
+        "RAM Used (MB)": 157.97,
+        "ROM Used (GB)": 69.61
     }
 ]
