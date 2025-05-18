@@ -32,7 +32,8 @@ Bài toán 8 ô chữ, một bài toán kinh điển trong lĩnh vực Trí tu�
   Ưu điểm: Tiết kiệm bộ nhớ vì chỉ cần lưu trữ các trạng thái dọc theo con đường tìm kiếm hiện tại.
   Nhược điểm: Không đảm bảo sẽ tìm thấy lời giải tối ưu và có thể bị rơi vào vòng lặp vô hạn nếu không xử lý đúng.
 
- ![DFS](../gif/DFS.gif)
+![DFS](https://github.com/user-attachments/assets/482d9fcd-5b8a-4891-a406-b13c61afea2d)
+
 
 #### Tìm kiếm theo chiều rộng (Breadth-First Search - BFS)
   Nguyên tắc hoạt động: BFS tìm kiếm theo cách mở rộng tất cả các trạng thái ở cùng một mức độ trước khi chuyển sang mức độ sâu hơn. Quá trình này tiếp tục cho đến khi tìm thấy trạng thái mục tiêu.
@@ -40,7 +41,8 @@ Bài toán 8 ô chữ, một bài toán kinh điển trong lĩnh vực Trí tu�
   Ưu điểm: Đảm bảo tìm thấy lời giải tối ưu nếu có.
   Nhược điểm: Tốn nhiều bộ nhớ vì phải lưu trữ tất cả các trạng thái ở cùng một mức độ.
 
-  ![BFS](../gif/BFS.gif)
+![BFS](https://github.com/user-attachments/assets/e2500ea9-b409-45d9-a190-5a7b5444d468)
+
 
  #### Tìm kiếm chi phí đồng nhất (Uniform-Cost Search - UCS)
   Nguyên tắc hoạt động: UCS tìm kiếm theo chi phí nhỏ nhất, tức là mở rộng các trạng thái có chi phí thấp nhất từ điểm bắt đầu đến trạng thái hiện tại. Quá trình này tiếp tục cho đến khi tìm thấy trạng thái mục tiêu.
@@ -48,7 +50,8 @@ Bài toán 8 ô chữ, một bài toán kinh điển trong lĩnh vực Trí tu�
   Ưu điểm: Đảm bảo tìm được lời giải tối ưu.
   Nhược điểm: Tốn nhiều bộ nhớ và thời gian, vì phải tính toán và lưu trữ các chi phí của các trạng thái.
 
-  ![UCS](../gif/UCS.gif)
+![UCS](https://github.com/user-attachments/assets/bee84120-12a6-4022-acd9-631948c69e6a)
+
 
 
 #### Tìm kiếm sâu dần (Iterative Deepening Depth-First Search - IDDFS)
@@ -57,13 +60,14 @@ Bài toán 8 ô chữ, một bài toán kinh điển trong lĩnh vực Trí tu�
   Ưu điểm: Tiết kiệm bộ nhớ hơn BFS, và vẫn đảm bảo tìm được lời giải tối ưu.
   Nhược điểm: Có thể phải tính toán lại các trạng thái đã mở rộng nhiều lần.
 
-  ![IDDFS](../gif/IDDFS.gif)
+![IDDFS](https://github.com/user-attachments/assets/bae46d52-425e-45a4-af6a-bbdb92f82492)
 
 
 ### 2.1.3. So sánh Hiệu Suất
 
 Hiệu suất của các thuật toán được đánh giá dựa trên các tiêu chí định lượng như thời gian thực thi (execution time) và số lượng trạng thái đã khám phá (number of expanded nodes) để đạt được trạng thái mục tiêu.
-![Sosanh](../gif/1.png)
+![1](https://github.com/user-attachments/assets/fc55f0b0-c7f6-4fda-9613-ae1d55986b6d)
+
 #### 2.1.4. Nhận Xét về Hiệu Suất
 
 - **DFS**: Ưu điểm về bộ nhớ do chỉ duy trì nhánh tìm kiếm hiện tại. Tuy nhiên, có nguy cơ rơi vào vòng lặp vô hạn hoặc tìm thấy lời giải không tối ưu. Hiệu suất thực tế có thể kém trên không gian trạng thái lớn của bài toán 8 ô chữ.
@@ -76,21 +80,24 @@ Hiệu suất của các thuật toán được đánh giá dựa trên các ti�
 Các thuật toán này tận dụng thông tin heuristic để hướng dẫn quá trình tìm kiếm, nâng cao hiệu quả so với các thuật toán không có thông tin.
 
  #### Greedy Best-First Search (Tìm kiếm tham lam theo ưu tiên tốt nhất):  
-  ![Greedy](../gif/Greedy.gif)
+![Greedy](https://github.com/user-attachments/assets/2b16b883-dfd3-47f5-9e5b-a8a4517d1515)
+
   
   - Hàm đánh giá (Evaluation function): f(n)=h(n), trong đó h(n) là hàm heuristic ước tính chi phí từ trạng thái n đến trạng thái mục tiêu.
   - Nguyên tắc hoạt động: Luôn chọn trạng thái có giá trị heuristic thấp nhất để mở rộng tiếp theo.
   - Ưu/nhược điểm: Nhanh chóng tìm ra lời giải nhưng không đảm bảo tính tối ưu. Dễ bị lạc vào các đường đi không hứa hẹn.
 
 #### A* Search (Tìm kiếm A*):  
-  ![A*](../gif/Astar.gif)
-  
+
+  ![Astar](https://github.com/user-attachments/assets/4386df07-5d06-4234-8e13-90dcc7245b3f)
+
   - Hàm đánh giá (Evaluation function): f(n)=g(n)+h(n), trong đó g(n) là chi phí đường đi từ trạng thái ban đầu đến trạng thái n, và h(n) là hàm heuristic ước tính chi phí từ trạng thái n đến trạng thái mục tiêu.
   - Nguyên tắc hoạt động: Ưu tiên mở rộng các trạng thái có tổng chi phí ước tính thấp nhất.
   - Ưu/nhược điểm: Đảm bảo tìm được lời giải tối ưu nếu hàm heuristic là chấp nhận được (admissible) và nhất quán (consistent). Có thể tốn nhiều bộ nhớ hơn các thuật toán khác.
 
 #### IDA* Search (Tìm kiếm IDA*):  
-  ![IDA*](../gif/IDAStar.gif)
+![IDAStar](https://github.com/user-attachments/assets/e008d1c2-fdbe-4e50-b79b-ea1c64854484)
+
   
   - Hàm đánh giá (Evaluation function): Tương tự A*, sử dụng f(n)=g(n)+h(n).
   - Nguyên tắc hoạt động: Thực hiện tìm kiếm sâu dần (Iterative Deepening) với ngưỡng cắt dựa trên giá trị f(n). Bắt đầu với ngưỡng bằng h(initial), sau đó tăng dần ngưỡng lên giá trị f(n) nhỏ nhất vượt quá ngưỡng hiện tại của lần tìm kiếm trước.
@@ -99,8 +106,9 @@ Các thuật toán này tận dụng thông tin heuristic để hướng dẫn q
   - Greedy có thể giúp tìm ra giải pháp nhanh chóng nhưng không đảm bảo tính tối ưu
   -  A* lại cung cấp giải pháp tối ưu hơn với sự đánh giá toàn diện giữa chi phí đi qua các trạng thái và chi phí ước tính từ trạng thái hiện tại tới mục tiêu.
   - IDA* là một sự lựa chọn lý tưởng khi bộ nhớ là một yếu tố hạn chế, mặc dù nó có thể tốn thời gian tính toán hơn
+ 
   **So Sánh**: 
-  ![sosanh](../gif/2.png)
+![2](https://github.com/user-attachments/assets/9c487862-a0b9-45e9-b148-df983f6fd000)
 
 ### 2.3. Các Thuật Toán Tìm Kiếm Cục Bộ (Local Search Algorithms)
 
@@ -178,7 +186,8 @@ Tập trung vào việc tối ưu hóa trạng thái hiện tại để tìm ra 
     - Lai ghép (Crossover): Kết hợp thông tin từ hai cá thể cha mẹ để tạo ra cá thể con.
     - Đột biến (Mutation): Tạo ra sự thay đổi ngẫu nhiên trong cá thể con.
   #### Beam Search (Tìm kiếm theo tia)
-![alt text](../gif/BeamSearch.gif)
+![BeamSearch](https://github.com/user-attachments/assets/d49d64d6-7086-4bad-ab19-6053d6a7b2eb)
+
 - **Tham số then chốt**:
   - Độ rộng tia `k`.
 
@@ -205,14 +214,19 @@ Tập trung vào việc tối ưu hóa trạng thái hiện tại để tìm ra 
   - Beam Search giúp cân bằng giữa bộ nhớ và thời gian, hiệu quả nếu chọn beam width phù hợp.
   - Genetic Algorithm có thể tìm lời giải tốt trong không gian trạng thái lớn nhưng cần nhiều tính toán và tinh chỉnh tham số. 
   -  Tóm lại, Tìm kiếm cục bộ và tiến hóa cung cấp các phương pháp linh hoạt, có thể áp dụng trong 8-puzzle để tìm lời giải gần tối ưu nhanh hơn so với tìm kiếm toàn diện, nhưng không đảm bảo tối ưu tuyệt đối.
+  
   **So sánh**:
-  ![sosanh](../gif/3.png)
+  
+  ![3](https://github.com/user-attachments/assets/2b8c057d-34a9-4087-a847-180d1fd1a5fb)
+
 ### 2.4. Các Thuật Toán Tìm Kiếm Khác
 
 ---
 
 #### And-Or Search (Tìm kiếm AND-OR)
-![And-Or](../gif/And_Or.gif)
+
+![And_Or](https://github.com/user-attachments/assets/75fd2bc8-27b7-437e-b5bd-d3b0c94d9889)
+
 - **Mục tiêu**: Tìm một **cây giải pháp** (solution tree) thay vì một đường đi duy nhất.
 - **Áp dụng**: Trong môi trường **không xác định** (nondeterministic), nơi mỗi hành động có thể dẫn đến nhiều kết quả khác nhau.
 - **Nguyên tắc hoạt động**:
@@ -245,7 +259,9 @@ Tập trung vào việc tối ưu hóa trạng thái hiện tại để tìm ra 
 ---
 
 #### Nondeterministic Search (Tìm kiếm không xác định)
-![NondeterminnisticSearch](../gif/NondeterminnisticSearch.gif)
+![NondeterminnisticSearch](https://github.com/user-attachments/assets/4bc6ac74-d5ff-40f6-a847-39b9fcbfb2fb)
+
+
 - **Môi trường**: Không xác định — một hành động có thể có **nhiều kết quả**.
 - **Mục tiêu**: Tìm một **kế hoạch với các nhánh dự phòng**, bao gồm:
   - Các hành động chính.
@@ -255,7 +271,8 @@ Tập trung vào việc tối ưu hóa trạng thái hiện tại để tìm ra 
 ---
 
 #### Partially Observable Search (Tìm kiếm trong môi trường quan sát một phần)
-![Partially_Observable_Search](../gif/Partially%20Observable%20Search.gif)
+![Partially Observable Search](https://github.com/user-attachments/assets/dfdbc10e-c57f-4eb7-99cb-0401732e5e84)
+
 - **Đặc điểm**:
   - Không thể quan sát toàn bộ trạng thái thật.
   - Làm việc với **trạng thái tin tưởng** (belief states) – tập các trạng thái khả dĩ.
@@ -264,7 +281,8 @@ Tập trung vào việc tối ưu hóa trạng thái hiện tại để tìm ra 
 
 ---
 #### Backtracking
-![Backtracking](../gif/Backtracking.gif)
+![Backtracking](https://github.com/user-attachments/assets/6e7ceff9-3b80-490c-8088-dc4d616a2e27)
+
 Thuật toán Backtracking duyệt qua không gian trạng thái một cách đệ quy, tìm kiếm lời giải bằng cách thử từng trạng thái và quay lại nếu không tìm được lời giải. Nếu tìm thấy trạng thái đích, thuật toán sẽ trả về đường đi.
 
 ### Cách hoạt động:
@@ -274,7 +292,8 @@ Thuật toán Backtracking duyệt qua không gian trạng thái một cách đ�
 - Nếu trạng thái hiện tại là trạng thái đích, trả về đường đi.
 
 #### Backtracking với Forward Checking
-![BacktrackingForward](../gif/BacktrackingForward.gif)
+![BacktrackingForward](https://github.com/user-attachments/assets/d55e768d-77a4-4575-9e71-c08ef5041c7f)
+
 Phiên bản này sử dụng Forward Checking để chỉ duyệt qua các láng giềng hợp lệ, giúp giảm thiểu việc duyệt qua các trạng thái đã thăm, từ đó cải thiện hiệu suất.
 
 ### Cách hoạt động:
@@ -290,6 +309,7 @@ Thuật toán Min-Conflicts là một phương pháp heuristic, nơi thuật to�
 - Chọn láng giềng có số lượng xung đột ít nhất.
 - Dừng lại nếu không có thay đổi trạng thái hoặc đạt đến giới hạn bước đi.
 #### Sensorless Search
+![Sensorless](https://github.com/user-attachments/assets/8cdbebba-2a9e-4471-901c-fe4dd639bd11)
 
 Thuật toán **Sensorless Search** (tìm kiếm không cảm biến) là một kỹ thuật tìm kiếm trong môi trường mà trạng thái ban đầu không hoàn toàn được biết và tác nhân không nhận được thông tin cảm biến từ môi trường. Tác nhân chỉ biết được tập hợp các trạng thái khả dĩ mà nó có thể đang ở và phải chọn hành động làm giảm sự bất định này.
 
@@ -308,6 +328,10 @@ Thuật toán **Sensorless Search** (tìm kiếm không cảm biến) là một 
 - **Không sử dụng cảm biến**, chỉ dựa vào mô hình hành động và suy diễn logic.
 - Phù hợp với môi trường **ẩn**, nơi tác nhân không thể quan sát trực tiếp.
 - Tập trung vào việc **thu hẹp tập hợp trạng thái có thể** bằng các hành động có thể dự đoán được.
+
+  ### So sánh
+  ![4](https://github.com/user-attachments/assets/3c79316c-e392-41a8-aba5-9e94d1dfe103)
+
 ## 3. KẾT LUẬN
 
 Thông qua đồ án này, chúng tôi đã thực hiện nghiên cứu, triển khai và so sánh hiệu suất của một số thuật toán tìm kiếm tiêu biểu trong bối cảnh bài toán 8 ô chữ. Kết quả nghiên cứu cho thấy:
