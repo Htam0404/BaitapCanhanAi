@@ -200,6 +200,7 @@ So sánh hiệu suất:
 
 2.4. Các Thuật Toán Tìm Kiếm Khác
 And-Or Search (Tìm kiếm AND-OR)
+
 ![And_Or](https://github.com/user-attachments/assets/1fbb0e77-44b6-4815-81ca-221a13334a7d)
 
 
